@@ -4,9 +4,6 @@ package org.example;
  * Crea y almacena las variables a utilizar, Expendedor se encarga de almacenar y suministrar productos y monedas
  */
 public class Expendedor{
-    public enum Productos{
-        COCA,SPRITE,SNICKERS,SUPER8;
-    }
     protected int preciosB;
     protected int preciosD;
 
@@ -14,11 +11,6 @@ public class Expendedor{
     private DepositoB depsprite;
     private DepositoD depsnickers;
     private DepositoD depsuper8;
-    public static final int  COCA=1;
-    public static final int  SPRITE=2;
-
-    public static final int  SNICKERS=3;
-    public static final int  SUPER8=4;
     DepositoM monVu = new DepositoM();
 
     /**
@@ -27,9 +19,9 @@ public class Expendedor{
      * @param precioBebidas Indica el precio de las bebidas por igual
      * @param precioDulces Indica el precio de los dulces por igual
      */
-    public Expendedor(int numProductos, int precioBebidas, int precioDulces){
-        preciosB = precioBebidas;
-        preciosD = precioDulces;
+    public Expendedor(int numProductos, Precios precioBebidas, Precios precioDulces){
+        preciosB = precioBebidas.getValor();
+        preciosD = precioDulces.getValor();
         depcoca = new DepositoB();
         depsprite = new DepositoB();
         depsnickers = new DepositoD();
@@ -55,10 +47,10 @@ public class Expendedor{
      * @throws NoHayProductoException Si no quedan productos del tipo que se pide en el almacen correspondiente, entrega este mensaje de error
      * @throws PagoInsuficienteException Si la moneda es de valor inferior al precio del producto, se entrega este mensaje de error
      */
-    public Producto comprarProducto(Moneda mon, int cualP) throws PagoIncorrectoException, NoHayProductoException,PagoInsuficienteException{
+    public Producto comprarProducto(Moneda mon, Productos cualP) throws PagoIncorrectoException, NoHayProductoException,PagoInsuficienteException{
         Producto p = null;
         if (mon!=null){
-            if ((cualP==1)||(cualP==2)){
+            if ((cualP==Productos.COCA)||(cualP==Productos.SPRITE)){
                 if (mon.getValor()>=preciosB){
                     switch (cualP){
                         case COCA:  p = depcoca.getBebida(); break;
@@ -73,7 +65,7 @@ public class Expendedor{
                     }else {
                         Moneda mon1 = mon;
                         monVu.addMoneda(mon1);
-                        if (cualP==COCA){
+                        if (cualP == Productos.COCA){
                             throw new NoHayProductoException("No hay productos del tipo : CocaCola");
                         }else{
                             throw new NoHayProductoException("No hay productos del tipo : Sprite");
@@ -99,7 +91,7 @@ public class Expendedor{
                     }else {
                         Moneda mon1 = mon;
                         monVu.addMoneda(mon1);
-                        if (cualP==SNICKERS){
+                        if (cualP==Productos.SNICKERS){
                             throw new NoHayProductoException("No hay productos del tipo : Snickers");
                         }else{
                             throw new NoHayProductoException("No hay productos del tipo : Super8");

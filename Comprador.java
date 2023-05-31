@@ -16,7 +16,7 @@ public class Comprador{
      * @throws NoHayProductoException Si no quedan productos del tipo que se pide en el almacen correspondiente, entrega este mensaje de error
      * @throws PagoInsuficienteException Si la moneda es de valor inferior al precio del producto, se entrega este mensaje de error
      */
-    public Comprador (Moneda m, int cualProducto, Expendedor exp) throws PagoIncorrectoException,NoHayProductoException,PagoInsuficienteException{
+    public Comprador (Moneda m, Productos cualProducto, Expendedor exp) throws PagoIncorrectoException,NoHayProductoException,PagoInsuficienteException{
         Producto p = null;
         Moneda m1;
         if ((p = exp.comprarProducto(m,cualProducto))!=null){
