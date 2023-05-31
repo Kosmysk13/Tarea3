@@ -4,6 +4,9 @@ package org.example;
  * Crea y almacena las variables a utilizar, Expendedor se encarga de almacenar y suministrar productos y monedas
  */
 public class Expendedor{
+    public enum Productos{
+        COCA,SPRITE,SNICKERS,SUPER8;
+    }
     protected int preciosB;
     protected int preciosD;
 
