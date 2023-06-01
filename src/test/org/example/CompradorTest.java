@@ -32,6 +32,26 @@ class CompradorTest {
     }
     @Test
     @DisplayName("Test PagoIncorrectoException")
+    public void testCompraMonedaNull() throws PagoIncorrectoException{
+        Moneda pago = null;
+        Exception exception = assertThrows(PagoIncorrectoException.class, ()->{
+            expendedor.comprarProducto(pago,Productos.COCA);
+        });
+    }
+    @Test
+    @DisplayName("Test NoHayProductoException")
+    public void testCompraSinProductos() throws Exception {
+        System.out.println("CompraSinProductos");
+        moneda = new Moneda1000();
+        Exception exception = assertThrows(NoHayProductoException.class, ()->{
+            assertNotNull(comprador = new Comprador(moneda,Productos.COCA,expendedor));
+            assertNotNull(comprador = new Comprador(moneda,Productos.COCA,expendedor));
+            assertNotNull(comprador = new Comprador(moneda,Productos.COCA,expendedor));
+            assertNotNull(comprador = new Comprador(moneda,Productos.COCA,expendedor));
+        });
+    }
+    @Test
+    @DisplayName("Test PagoInsuficienteException")
     public void testComprarProductoSinSuficienteMoneda() throws PagoInsuficienteException{
         Moneda pago = new Moneda500();
         Exception exception = assertThrows(PagoInsuficienteException.class, ()->{
