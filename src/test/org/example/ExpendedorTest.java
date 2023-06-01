@@ -15,11 +15,6 @@ class ExpendedorTest {
     void setUp() {
         expendedor = new Expendedor(3,Precios.BEBIDAS,Precios.DULCES);
     }
-
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     @DisplayName("Test Una Productos")
     public void testComprarUnProducto() throws Exception {

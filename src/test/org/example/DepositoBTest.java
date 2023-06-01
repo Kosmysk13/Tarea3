@@ -16,13 +16,7 @@ class DepositoBTest {
     @BeforeEach
     void setUp() {
         depositob = new DepositoB();
-
     }
-
-    @AfterEach
-    void tearDown() {
-    }
-
     @Test
     @DisplayName("Test Agrega Bebidas")
     void addBebida() {
